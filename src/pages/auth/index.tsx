@@ -13,7 +13,7 @@ export const Auth = () => {
     justifyContent: 'center',
     alignItems: 'center',
     height: '100vh',
-    backgroundImage: 'image.png', // Replace with your image URL
+    backgroundImage: 'url(image.png)', // Corrected background image URL
     backgroundSize: 'cover',
     backgroundPosition: 'center',
     color: '#ffffff',
@@ -27,12 +27,15 @@ export const Auth = () => {
     marginBottom: '20px',
   };
 
+  const buttonWrapperStyle: React.CSSProperties = {
+    margin: '10px',
+  };
+
   const buttonStyle: React.CSSProperties = {
     backgroundColor: '#3498db',
     color: '#ffffff',
     border: 'none',
     padding: '10px 20px',
-    margin: '10px',
     borderRadius: '5px',
     cursor: 'pointer',
     fontSize: '1rem',
@@ -47,12 +50,24 @@ export const Auth = () => {
     <div style={containerStyle}>
       <SignedOut>
         <h1 style={headingStyle}>Welcome to Your Own Personal Finance Tracker!</h1>
-        <SignUpButton
-          style={{ ...buttonStyle, ':hover': buttonHoverStyle }}
-        />
-        <SignInButton
-          style={{ ...buttonStyle, ':hover': buttonHoverStyle }}
-        />
+        <div
+          style={buttonWrapperStyle}
+          onMouseEnter={(e) => (e.currentTarget.children[0].style.backgroundColor = buttonHoverStyle.backgroundColor)}
+          onMouseLeave={(e) => (e.currentTarget.children[0].style.backgroundColor = buttonStyle.backgroundColor)}
+        >
+          <div style={buttonStyle}>
+            <SignUpButton />
+          </div>
+        </div>
+        <div
+          style={buttonWrapperStyle}
+          onMouseEnter={(e) => (e.currentTarget.children[0].style.backgroundColor = buttonHoverStyle.backgroundColor)}
+          onMouseLeave={(e) => (e.currentTarget.children[0].style.backgroundColor = buttonStyle.backgroundColor)}
+        >
+          <div style={buttonStyle}>
+            <SignInButton />
+          </div>
+        </div>
       </SignedOut>
       <SignedIn>
         <Navigate to="/" />
